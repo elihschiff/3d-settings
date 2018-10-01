@@ -28,6 +28,9 @@ app.listen(3000, function() {
   console.log('listening on 3000');
 })
 
+//allows for all items in the public folder to be accessed
+app.use(express.static(process.cwd() + '/public'));
+
 //when user goes to localhost:3000/ they will be served ./client/index.html
 app.get('/', (req, res) => {
   res.sendFile(clientLocation + '/index.html');

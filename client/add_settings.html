@@ -29,40 +29,41 @@
     </div>
   </nav>
 
-  <div class="container-fluid">
-    <!-- input form  -->
-    <div class="row" style="padding-top: 3em">
-      <div class="col"></div>
-      <div class="col-4 card">
-        <form action="/add_settings" method="POST" style="margin: 1em">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Printer Name</label>
-            <input type="text" class="form-control" placeholder="Enter Printer Type" name="name">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Print Speed</label>
-            <input type="number" class="form-control" placeholder="Enter Print Speed" name="printSpeed">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Layer Height</label>
-            <input type="number" step="0.01" class="form-control" placeholder="Enter Layer Height" name="layerHeight">
-          </div>
-          <label for="exampleInputEmail1">Plastic Type</label>
-          <select class="form-control" name="plastic">
-            <option>Enter Plastic Type</option>
-            <option value="pla">PLA</option>
-            <option value="abs">ABS</option>
-          </select>
-          <br>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+  <div id="app">
+    <div class="container-fluid">
+      <!-- input form  -->
+      <div class="row" style="padding-top: 3em">
+        <div class="col"></div>
+        <div class="col-4 card">
+          <form action="/add_settings" method="POST" style="margin: 1em">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Printer Name</label>
+              <input type="text" class="form-control" placeholder="Enter Printer Type" name="name" id="name" v-model="printerSettings.name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Print Speed</label>
+              <input type="number" class="form-control" placeholder="Enter Print Speed" name="printSpeed" id="printSpeed" v-model="printerSettings.printSpeed">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Layer Height</label>
+              <input type="number" step="0.01" class="form-control" placeholder="Enter Layer Height" name="layerHeight" id="layerHeight" v-model="printerSettings.layerHeight">
+            </div>
+            <label for="exampleInputEmail1">Plastic Type</label>
+            <select class="form-control" name="plastic" id="plastics" v-model="printerSettings.plastics">
+              <option>Enter Plastic Type</option>
+              <option value="pla">PLA</option>
+              <option value="abs">ABS</option>
+            </select>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="col"></div>
       </div>
-      <div class="col"></div>
     </div>
   </div>
 
-
-  <!-- <script src="js/scripts.js"></script> -->
+  <script src="js/add_settings.js"></script>
 </body>
 
 </html>
