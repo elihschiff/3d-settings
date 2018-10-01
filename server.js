@@ -39,6 +39,11 @@ app.get('/', (req, res) => {
   res.sendFile(clientLocation + '/index.html');
 })
 
+//when user goes to localhost:3000/add_settings they will be served ./client/add_settings.html
+app.get('/add_settings', (req, res) => {
+  res.sendFile(clientLocation + '/add_settings.html');
+})
+
 //when the user posts to add_settings the server prints out the settings to the console
 app.post('/add_settings', (req, res) => {
   console.log(req.body);
