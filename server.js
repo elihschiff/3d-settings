@@ -21,13 +21,6 @@ db.once('open', function() {
   // we're connected!
 });
 
-
-var printerSettingsSchema = new mongoose.Schema({
-  model: String,
-  layerHeight: String
-});
-var printSettings = mongoose.model('printerSettings', printerSettingsSchema);
-
 //starts the server on port 3000
 //prints to console that the server is on
 app.listen(3000, function() {
@@ -42,7 +35,7 @@ app.get('/', (req, res) => {
 //when the user posts to add_settings the server prints out the settings to the console
 app.post('/add_settings', (req, res) => {
   console.log(req.body);
-  db.collection('employees').insertOne(req.body, function(err, result) {
+  db.collection('3D Settings').insertOne(req.body, function(err, result) {
     if (err)
       res.send('Error');
     else
