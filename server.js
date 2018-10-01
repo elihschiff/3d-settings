@@ -47,7 +47,5 @@ app.post('/add_settings', (req, res) => {
       res.send('Error');
     else
       res.send('Success');
-
   });
-
 })
