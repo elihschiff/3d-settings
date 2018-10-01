@@ -9,9 +9,10 @@ app.use(bodyParser.urlencoded({
 
 //location of the client folder
 var clientLocation = __dirname + "/client";
-
 //connect to the mongodb database
 var mongoose = require('mongoose');
+//define this type
+var ObjectId = mongoose.Types.ObjectId;
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true
 });
@@ -41,18 +42,33 @@ app.get('/add_settings', (req, res) => {
 var Schema = mongoose.Schema
 var settingsSchmea = new Schema({
   name: String,
-  quote: String
+  printSpeed: Number,
+  layerHeight: Number,
+  plastic: String
 })
 
-//making a model
 
-var settingsModel = mongoose.model("settingsModel", settingsSchmea);
+//making a model
+var settingsModel = mongoose.model("3D Settings", settingsSchmea);
 
 //when the user posts to add_settings the server prints out the settings to the console
 app.post('/add_settings', (req, res) => {
   console.log(req.body);
-  let instance = new settingsModel({ name: req.body.name, quote: req.body.quote})
-  settingsModel.save((err) => {
+  let instance = new settingsModel({ name: req.body.name, printSpeed: req.body.printSpeed, layerHeight: req.body.layerHeight, plastic: req.body.plastic})
+  instance.save((err) => {
     console.log(err);
+  })
+  //saved
+  res.sendFile(clientLocation + "/success.html");
+})
+
+app.get('/get_settings/:id', (req, res) => {
+  settingsModel.find({_id: ObjectId(req.params.id)}, (err, settings) => {
+    if (err) {
+    console.log(err);
+    return;
+    }
+    console.log(settings);
+    res.send(settings);
   })
 })
