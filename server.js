@@ -37,13 +37,22 @@ app.get('/add_settings', (req, res) => {
   res.sendFile(clientLocation + '/add_settings.html');
 })
 
+//creating a schema
+var Schema = mongoose.Schema
+var settingsSchmea = new Schema({
+  name: String,
+  quote: String
+})
+
+//making a model
+
+var settingsModel = mongoose.model("settingsModel", settingsSchmea);
+
 //when the user posts to add_settings the server prints out the settings to the console
 app.post('/add_settings', (req, res) => {
   console.log(req.body);
-  db.collection('3D Settings').insertOne(req.body, function(err, result) {
-    if (err)
-      res.send('Error');
-    else
-      res.send('Success');
-  });
+  let instance = new settingsModel({ name: req.body.name, quote: req.body.quote})
+  settingsModel.save((err) => {
+    console.log(err);
+  })
 })
