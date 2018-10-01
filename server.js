@@ -65,6 +65,7 @@ app.post('/add_settings', (req, res) => {
   res.sendFile(clientLocation + "/success.html");
 })
 
+// when the user goes to get settins with their id, return their settings from the database
 app.get('/get_settings/:id', (req, res) => {
   settingsModel.find({_id: ObjectId(req.params.id)}, (err, settings) => {
     if (err) {
