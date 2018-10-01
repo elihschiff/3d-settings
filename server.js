@@ -17,14 +17,6 @@ db.once('open', function() {
   // we're connected!
 });
 
-// //Temp schemas
-// var kittySchema = new mongoose.Schema({
-//   name: String
-// });
-// var Kitten = mongoose.model('Kitten', kittySchema);
-// var silence = new Kitten({ name: 'Silence' });
-// console.log(silence.name); // 'Silence'
-
 
 var printerSettingsSchema = new mongoose.Schema({
   model: String,
@@ -46,4 +38,12 @@ app.get('/', (req, res) => {
 //when the user posts to add_settings the server prints out the settings to the console
 app.post('/add_settings', (req, res) => {
    console.log(req.body);
+   db.collection('employees').insertOne(req.body, function (err, result) {
+      if (err)
+         res.send('Error');
+      else
+        res.send('Success');
+
+  });
+
 })
