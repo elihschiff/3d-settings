@@ -44,6 +44,6 @@ app.post('/add_settings', (req, res) => {
     if (err)
       res.send('Error');
     else
-      res.sendFile(clientLocation + '/success.html');
+      res.send('Success');
   });
 })
