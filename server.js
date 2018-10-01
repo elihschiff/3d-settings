@@ -1,12 +1,14 @@
+//dependencies
 require('dotenv').config();
 const express = require('express');
 const bodyParser= require('body-parser');
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
+//location of the client folder
 var clientLocation = __dirname + "/client";
 
-
+//connect to the mongodb database
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 var db = mongoose.connection;
@@ -15,23 +17,33 @@ db.once('open', function() {
   // we're connected!
 });
 
-//Temp schemas
-var kittySchema = new mongoose.Schema({
-  name: String
+// //Temp schemas
+// var kittySchema = new mongoose.Schema({
+//   name: String
+// });
+// var Kitten = mongoose.model('Kitten', kittySchema);
+// var silence = new Kitten({ name: 'Silence' });
+// console.log(silence.name); // 'Silence'
+
+
+var printerSettingsSchema = new mongoose.Schema({
+  model: String,
+  layerHeight: String
 });
-var Kitten = mongoose.model('Kitten', kittySchema);
-var silence = new Kitten({ name: 'Silence' });
-console.log(silence.name); // 'Silence'
+var printSettings = mongoose.model('printerSettings', printerSettingsSchema);
 
-
+//starts the server on port 3000
+//prints to console that the server is on
 app.listen(3000, function() {
   console.log('listening on 3000');
 })
 
+//when user goes to localhost:3000/ they will be served ./client/index.html
 app.get('/', (req, res) => {
   res.sendFile(clientLocation + '/index.html');
 })
 
-app.post('/quotes', (req, res) => {
+//when the user posts to add_settings the server prints out the settings to the console
+app.post('/add_settings', (req, res) => {
    console.log(req.body);
 })
