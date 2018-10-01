@@ -12,7 +12,7 @@
 <body>
   <!-- navbar  -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">3D Settings</a>
+    <a class="navbar-brand" href="/">3D Settings</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,6 +39,21 @@
             <label for="exampleInputEmail1">Printer Name</label>
             <input type="text" class="form-control" placeholder="Enter Printer Type" name="name">
           </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Print Speed</label>
+            <input type="number" class="form-control" placeholder="Enter Print Speed" name="printSpeed">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Layer Height</label>
+            <input type="number" step="0.01" class="form-control" placeholder="Enter Layer Height" name="layerHeight">
+          </div>
+          <label for="exampleInputEmail1">Plastic Type</label>
+          <select class="form-control" name="plastic">
+            <option>Enter Plastic Type</option>
+            <option value="pla">PLA</option>
+            <option value="abs">ABS</option>
+          </select>
+          <br>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
