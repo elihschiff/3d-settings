@@ -5,7 +5,10 @@ var app = new Vue({
   },
   methods: {
     uploadSettings: function () {
-      //post the settings to the server
+      $.post( "/add_settings.html", function( data ) {
+        $( ".result" ).html( data );
+        alert( "Load was performed." );
+      });
     }
   }
 })
