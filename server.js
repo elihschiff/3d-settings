@@ -62,7 +62,7 @@ app.post('/add_settings', (req, res) => {
     console.log(err);
   })
   //saved
-  res.sendFile(clientLocation + "/success.html" + <span style="display: none">req.params.id</span>);
+  res.sendFile(clientLocation + "/success.html" + '<span id="databaseID" style="display: none">' + req.params.id + '</span>');
 })
 
 // when the user goes to get settins with their id, return their settings from the database
