@@ -62,7 +62,7 @@ app.post('/add_settings', (req, res) => {
     console.log(err);
   })
   //saved
-  res.sendFile(clientLocation + "/success.html");
+  res.sendFile(clientLocation + "/success.html" + <span style="display: none">req.params.id</span>);
 })
 
 // when the user goes to get settins with their id, return their settings from the database
@@ -88,13 +88,13 @@ app.post('/get_settings/:id', (req,res) => {
     if (settings.name != req.body.name && settings.name != ''){
       settingsModel.updateOne({_id: req.params.id}, {name: req.body.name})
     }
-    if (settings.printSpeed != req.body.printSpeed && settings.printSpeed != ''){
+    if (settings.printSpeed != req.body.printSpeed){
       settingsModel.updateOne({_id: req.params.id}, {printSpeed: req.body.printSpeed})
     }
-    if (settings.layerHeight != req.body.layerHeight && settings.layerHeight != ''){
+    if (settings.layerHeight != req.body.layerHeight){
       settingsModel.updateOne({_id: req.params.id}, {layerHeight: req.body.layerHeight})
     }
-    if (settings.plastic != req.body.plastic && settings.plastic != ''){
+    if (settings.plastic != req.body.plastic){
       settingsModel.updateOne({_id: req.params.id}, {plastic: req.body.plastic})
     }
   })
