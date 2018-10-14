@@ -58,11 +58,22 @@ var settingsModel = mongoose.model("3D Settings", settingsSchmea);
 app.post('/add_settings', (req, res) => {
   console.log(req.body);
   let instance = new settingsModel({ name: req.body.name, printSpeed: req.body.printSpeed, layerHeight: req.body.layerHeight, plastic: req.body.plastic})
-  instance.save((err) => {
-    console.log(err);
+  instance.save((err, success) => {
+    if(err){
+      console.log(err);
+    }
+
+    if(success){
+      //redirects user to success page with id as query parameter
+      res.redirect('/success?id=' + success._id);
+    }
   })
   //saved
-  res.sendFile(clientLocation + "/success.html" + '<span id="databaseID" style="display: none">' + req.params.id + '</span>');
+})
+
+// returns the success page to the user
+app.get('/success', (req, res) => {
+   res.sendFile(clientLocation + "/success.html");
 })
 
 // when the user goes to get settins with their id, return their settings from the database

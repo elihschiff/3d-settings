@@ -32,7 +32,6 @@
 
   <div id="app">
     <div class="container-fluid">
-      <!-- input form  -->
       <div class="row" style="padding-top: 3em">
         <div class="col"></div>
         <div class="col-4 card">
@@ -50,7 +49,7 @@
               <input type="number" step="0.01" class="form-control" placeholder="Enter Layer Height" name="layerHeight" id="layerHeight" v-model="printerSettings.layerHeight">
             </div>
             <label for="exampleInputEmail1">Plastic Type</label>
-            <select class="form-control" name="plastic" id="plastics" v-model="printerSettings.plastics">
+            <select class="form-control" name="plastic" id="plastics" placeholder="Enter Plastic Type" v-model="printerSettings.plastic">
               <option>Enter Plastic Type</option>
               <option value="pla">PLA</option>
               <option value="abs">ABS</option>
