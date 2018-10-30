@@ -34,7 +34,7 @@
     <div class="container-fluid">
       <div class="row" style="padding-top: 3em">
         <div class="col"></div>
-        <div class="col-4 card" v-if="canEdit">
+        <div class="col-4 card" v-if="canEdit || !oldSettings">
           <span style="margin: .5em"></span>
           <template v-if="oldSettings">
               <h6>Note: The current settings you are viewing/editing are based off <a target="_blank" :href="'http://localhost:3000/add_settings?id=' + oldSettings">this set of settings (also visible on the right)</a></h6>

@@ -33,8 +33,7 @@ var app = new Vue({
           app.printerSettings.parentId = app.oldSettings;
 
           app.oldPrinterSettings = JSON.parse(JSON.stringify(app.printerSettings));
-
-          if(!app.oldSettings){
+          if(app.oldSettings.length){
             canEdit = true;
           }
         }
