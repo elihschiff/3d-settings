@@ -4,7 +4,8 @@ var app = new Vue({
     printerSettings: {"test":1},
     oldPrinterSettings: {"test":1},
     canEdit: false,
-    oldSettings: null
+    oldSettings: null,
+    childrenSettings: []
   },
   mounted:function(){
       //gets settings if there is an id in the query parameters
@@ -16,6 +17,7 @@ var app = new Vue({
       app.canEdit = true;
     },
     uploadSettings: function () {
+      //This is so far not needed. That is because the html does all I need
       // $.post( "/add_settings.html", function( data ) {
       // });
       // console.log(JSON.stringify(this.printerSettings));
@@ -33,8 +35,18 @@ var app = new Vue({
           app.printerSettings.parentId = app.oldSettings;
 
           app.oldPrinterSettings = JSON.parse(JSON.stringify(app.printerSettings));
+          //if viewing old settings make it so that one can click the edit button
           if(app.oldSettings.length){
             canEdit = true;
+          }
+
+          //Viewing old settings so get all children settings
+          if(app.oldSettings){
+            $.get( "/get_children/" + app.oldSettings, function( data ) {
+              if(data){
+                childrenSettings = data[0].ids;
+              }
+            });
           }
         }
       });
