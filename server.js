@@ -72,6 +72,17 @@ app.post('/add_settings', (req, res) => {
   //saved
 })
 
+app.post('/get_children/:id', (req,res)=> {
+  console.log(req.body);
+  settingsModel.find({parentId: ObjectId(req.params.id)}, (err, children) =>{
+    if (err){
+      console.log(err);
+      return;
+    }
+    res.send(children)
+  })
+})
+
 app.post('/add_settings/:id', (req, res)=>{
   console.log(req.body);
   let instance = new settingsModel({ name: req.body.name, printSpeed: req.body.printSpeed, layerHeight: req.body.layerHeight, plastic: req.body.plastic, parentId : ObjectId(req.params.id)})
