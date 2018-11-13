@@ -109,7 +109,7 @@
           <br>
           <h5 v-if="childrenSettings.length == 0">It looks like nobody has based their settings off these settings. Click the "Edit" button above to be the first!</h5>
           <template v-for="(child, index) in childrenSettings">
-            <h6 v-if="childrenSettings.length != 0"><a target="_blank" :href="'http://localhost:3000/add_settings?id=' + child">http://localhost:3000/add_settings?id={{child}}</a></h6>
+            <h6 v-if="childrenSettings.length != 0"><a target="_blank" :href="'http://localhost:3000/add_settings?id=' + child._id">http://localhost:3000/add_settings?id={{child._id}}</a></h6>
           </template>
         </div>
         <div class="col">
