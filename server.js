@@ -58,7 +58,7 @@ var settingsModel = mongoose.model("3D Settings", settingsSchmea);
 //when the user posts to add_settings the server prints out the settings to the console
 app.post('/add_settings', (req, res) => {
   console.log(req.body);
-  let instance = new settingsModel({ name: req.body.name, printSpeed: req.body.printSpeed, layerHeight: req.body.layerHeight, plastic: req.body.plastic, parentId :null})
+  let instance = new settingsModel({ name: req.body.name, printSpeed: req.body.printSpeed, layerHeight: req.body.layerHeight, plastic: req.body.plastic, parentId :req.body.parentId})
   instance.save((err, success) => {
     if(err){
       console.log(err);
@@ -66,13 +66,14 @@ app.post('/add_settings', (req, res) => {
 
     if(success){
       //redirects user to success page with id as query parameter
-      res.redirect('/success?id=' + success._id);
+      // res.redirect('/success?id=' + success._id);
+      res.send('/success?id=' + success._id);
     }
   })
   //saved
 })
 
-app.post('/get_children/:id', (req,res)=> {
+app.get('/get_children/:id', (req,res)=> {
   console.log(req.body);
   settingsModel.find({parentId: ObjectId(req.params.id)}, (err, children) =>{
     if (err){
@@ -104,7 +105,8 @@ app.post('/add_settings/:id', (req, res)=>{
     }
     if(success){
       //redirects user to success page with id as query parameter
-      res.redirect('/success?id=' + success._id);
+      // res.redirect('/success?id=' + success._id);
+      res.send('/success?id=' + success._id);
     }
   })
 })

@@ -5,7 +5,7 @@ var app = new Vue({
     oldPrinterSettings: {"test":1},
     canEdit: false,
     oldSettings: null,
-    childrenSettings: []
+    childrenSettings: {},
   },
   mounted:function(){
       //gets settings if there is an id in the query parameters
@@ -17,9 +17,18 @@ var app = new Vue({
       app.canEdit = true;
     },
     uploadSettings: function () {
-      //This is so far not needed. That is because the html does all I need
       // $.post( "/add_settings.html", function( data ) {
       // });
+      // $.ajax({
+      //   type: "POST",
+      //   url: "/add_settings.html",
+      //   data: app.printerSettings
+      // });
+      $.post( "/add_settings", app.printerSettings, function(data){
+        console.log(app.printerSettings);
+        console.log(data);
+        window.location.href = data;
+      });
       // console.log(JSON.stringify(this.printerSettings));
     },
     //changes the printerSettings to the settings from the database
@@ -42,9 +51,12 @@ var app = new Vue({
 
           //Viewing old settings so get all children settings
           if(app.oldSettings){
+            console.log("/get_children/" + app.oldSettings)
             $.get( "/get_children/" + app.oldSettings, function( data ) {
+              console.log("Data" + data)
               if(data){
-                childrenSettings = data[0].ids;
+                console.log("Data" + data)
+                app.childrenSettings = data;
               }
             });
           }
