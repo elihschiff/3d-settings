@@ -66,7 +66,8 @@ app.post('/add_settings', (req, res) => {
 
     if(success){
       //redirects user to success page with id as query parameter
-      res.redirect('/success?id=' + success._id);
+      // res.redirect('/success?id=' + success._id);
+      res.send('/success?id=' + success._id);
     }
   })
   //saved
@@ -92,7 +93,8 @@ app.post('/add_settings/:id', (req, res)=>{
     }
     if(success){
       //redirects user to success page with id as query parameter
-      res.redirect('/success?id=' + success._id);
+      // res.redirect('/success?id=' + success._id);
+      res.send('/success?id=' + success._id);
     }
   })
 })

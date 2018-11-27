@@ -26,6 +26,8 @@ var app = new Vue({
       // });
       $.post( "/add_settings", app.printerSettings, function(data){
         console.log(app.printerSettings);
+        console.log(data);
+        window.location.href = data;
       });
       // console.log(JSON.stringify(this.printerSettings));
     },
