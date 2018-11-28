@@ -84,6 +84,18 @@ app.get('/get_children/:id', (req,res)=> {
   })
 })
 
+//finding stats
+app.post('/get_elements/:id', (req,res)=>{
+  console.log(req.params.id);
+  settingsModel.find({}, (err,elements)=>{
+    let requested_array = [];
+    elements.forEach((elements)=>{
+      requested_array.push(elements[req.params.id]);
+    })
+    res.send(requested_array);
+  })
+});
+
 app.post('/add_settings/:id', (req, res)=>{
   console.log(req.body);
   let instance = new settingsModel({ name: req.body.name, printSpeed: req.body.printSpeed, layerHeight: req.body.layerHeight, plastic: req.body.plastic, parentId : ObjectId(req.params.id)})
