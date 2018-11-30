@@ -48,12 +48,12 @@
               <input type="text" class="form-control" placeholder="Enter Printer Type" name="name" id="name" v-model="printerSettings.name">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Print Speed</label>
+              <label for="exampleInputEmail1">Print Speed (mm/s)</label>
               <input type="number" class="form-control" placeholder="Enter Print Speed" name="printSpeed" id="printSpeed" v-model="printerSettings.printSpeed">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Layer Height</label>
-              <input type="number" step="0.01" class="form-control" placeholder="Enter Layer Height" name="layerHeight" id="layerHeight" v-model="printerSettings.layerHeight">
+              <label for="exampleInputEmail1">Layer Height (mm)</label>
+              <input type="number" step="0.1" class="form-control" placeholder="Enter Layer Height" name="layerHeight" id="layerHeight" v-model="printerSettings.layerHeight">
             </div>
             <label for="exampleInputEmail1">Plastic Type</label>
             <select class="form-control" name="plastic" id="plastics" placeholder="Enter Plastic Type" v-model="printerSettings.plastic">
@@ -77,12 +77,12 @@
               <input type="text" class="form-control" placeholder="Enter Printer Type" name="name" id="name" v-model="oldPrinterSettings.name" disabled="disabled">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Print Speed</label>
+              <label for="exampleInputEmail1">Print Speed (mm/s)</label>
               <input type="number" class="form-control" placeholder="Enter Print Speed" name="printSpeed" id="printSpeed" v-model="oldPrinterSettings.printSpeed" disabled="disabled">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Layer Height</label>
-              <input type="number" step="0.01" class="form-control" placeholder="Enter Layer Height" name="layerHeight" id="layerHeight" v-model="oldPrinterSettings.layerHeight" disabled="disabled">
+              <label for="exampleInputEmail1">Layer Height (mm)</label>
+              <input type="number" step="0.1" class="form-control" placeholder="Enter Layer Height" name="layerHeight" id="layerHeight" v-model="oldPrinterSettings.layerHeight" disabled="disabled">
             </div>
             <label for="exampleInputEmail1">Plastic Type</label>
             <select class="form-control" name="plastic" id="plastics" placeholder="Enter Plastic Type" v-model="oldPrinterSettings.plastic" disabled="disabled">
