@@ -128,25 +128,3 @@ app.get('/get_settings/:id', (req, res) => {
   })
 })
 
-//when the user again posts to get settings, this time with an id, it should edit
-//any changed that the user made
-app.post('/get_settings/:id', (req,res) => {
-  settingsModel.find({_id: ObjectId(req.params.id)}, (err, settings) => {
-    if (err) {
-    console.log(err);
-    return;
-    }
-    if (settings.name != req.body.name && settings.name != ''){
-      settingsModel.updateOne({_id: req.params.id}, {name: req.body.name})
-    }
-    if (settings.printSpeed != req.body.printSpeed){
-      settingsModel.updateOne({_id: req.params.id}, {printSpeed: req.body.printSpeed})
-    }
-    if (settings.layerHeight != req.body.layerHeight){
-      settingsModel.updateOne({_id: req.params.id}, {layerHeight: req.body.layerHeight})
-    }
-    if (settings.plastic != req.body.plastic){
-      settingsModel.updateOne({_id: req.params.id}, {plastic: req.body.plastic})
-    }
-  })
-})
