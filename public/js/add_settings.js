@@ -65,3 +65,56 @@ var app = new Vue({
     }
   }
 })
+
+
+
+
+// Charts
+
+window.onload = function() {
+
+  $.post( "/get_elements/"+"printSpeed", function(data){
+    console.log(data);
+    const values = new Map();
+    for(var i=0;i<data.length;i++){
+      if(values.get(data[i])){
+        values.set(data[i], values.get(data[i])+1)
+      }else {
+        values.set(data[i], 1)
+      }
+    }
+
+    console.log(values)
+
+    var jsonValues = [];
+    for (var [key, value] of values) {
+      if(key != null){
+        var tempJson = {};
+        tempJson.label = key;
+        tempJson.y = value;
+        // console.log(tempJson)
+        jsonValues.push(tempJson);
+      }
+    }
+    console.log(JSON.stringify(jsonValues))
+
+    var chartData = {
+        theme: "light1", // "light2", "dark1", "dark2"
+        animationEnabled: false,
+        title: {
+            text: "Printer Speed"
+        },
+        data: [{
+            type: "column"//,
+            // dataPoints:
+        }]
+    }
+    jsonValues.sort(function (a, b) {
+        return a.label > b.label;
+    });
+    chartData.data[0].dataPoints = jsonValues
+
+    var chart = new CanvasJS.Chart("chartContainer", chartData);
+    chart.render();
+  });
+}
